@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.1.1 (Python 3.10.12 on linux)" generated="20240327 17:18:02.320" rpa="false" schemaversion="4">
+<suite id="s1" name="Tests Suits" source="/home/ofra/workspace/Automacao_Correios/tests_suits">
+<suite id="s1-s1" name="Pesquisa CEP" source="/home/ofra/workspace/Automacao_Correios/tests_suits/Pesquisa_CEP.robot">
+<test id="s1-s1-t1" name="TC01 - Pesquisar CEP de Maracanaú" line="6">
+<kw name="Dado que eu acesso o site dos correios" library="cep_steps">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>url=${geral.url}</arg>
+<arg>browser=${geral.browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20240327 17:18:02.697" level="INFO">Opening browser 'Chrome' to base url 'https://www.correios.com.br/'.</msg>
+<status status="PASS" starttime="20240327 17:18:02.696" endtime="20240327 17:18:06.374"/>
+</kw>
+<status status="PASS" starttime="20240327 17:18:02.696" endtime="20240327 17:18:06.374"/>
+</kw>
+<kw name="E clique no botão BUSCA CEP OU Endereço" library="cep_steps">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${home.cookie}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240327 17:18:06.376" level="INFO">Clicking element '//a[@id='btnCookie']'.</msg>
+<status status="PASS" starttime="20240327 17:18:06.375" endtime="20240327 17:18:06.445"/>
+</kw>
+<kw name="Scroll Element Into View" library="SeleniumLibrary">
+<arg>${home.cep}</arg>
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<status status="PASS" starttime="20240327 17:18:06.445" endtime="20240327 17:18:06.734"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${home.cep}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240327 17:18:06.736" level="INFO">Clicking element '//span[.='Busca CEP ou Endereço']'.</msg>
+<status status="PASS" starttime="20240327 17:18:06.735" endtime="20240327 17:18:07.800"/>
+</kw>
+<status status="PASS" starttime="20240327 17:18:06.374" endtime="20240327 17:18:07.801"/>
+</kw>
+<kw name="Quando eu escrever o CEP ${CEPs.maracanau}" library="cep_steps" sourcename="Quando eu escrever o CEP ${cep_number}">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>locator=${cep.endereco_input}</arg>
+<arg>text=${cep_number}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20240327 17:18:07.803" level="INFO">Typing text '61939-140' into text field '//input[@id='endereco']'.</msg>
+<status status="PASS" starttime="20240327 17:18:07.802" endtime="20240327 17:18:07.927"/>
+</kw>
+<status status="PASS" starttime="20240327 17:18:07.801" endtime="20240327 17:18:07.927"/>
+</kw>
+<kw name="E clicar em pesquisar" library="cep_steps">
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>${cep.pesquisar_btn}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20240327 17:18:07.929" level="INFO">Clicking button 'btn_pesquisar'.</msg>
+<status status="PASS" starttime="20240327 17:18:07.927" endtime="20240327 17:18:08.040"/>
+</kw>
+<status status="PASS" starttime="20240327 17:18:07.927" endtime="20240327 17:18:08.040"/>
+</kw>
+<kw name="Então o sistema deve apresentar o endereço Avenida Parque Central" library="cep_steps" sourcename="Então o sistema deve apresentar o endereço ${endereco}">
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>locator=${cep.logradouro}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20240327 17:18:08.041" endtime="20240327 17:18:08.296"/>
+</kw>
+<kw name="Element Text Should Be" library="SeleniumLibrary">
+<arg>locator=${cep.logradouro}</arg>
+<arg>expected=${endereco}</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20240327 17:18:08.299" level="INFO">Verifying element '//tbody/tr/td[@data-th='Logradouro/Nome']' contains exact text 'Avenida Parque Central'.</msg>
+<status status="PASS" starttime="20240327 17:18:08.296" endtime="20240327 17:18:08.336"/>
+</kw>
+<status status="PASS" starttime="20240327 17:18:08.040" endtime="20240327 17:18:08.337"/>
+</kw>
+<kw name="Finaliza o teste" library="setup_teardown" type="TEARDOWN">
+<kw name="Take Screenshot" library="ScreenCapLibrary">
+<arg>name=../resources/screenshots/${TEST_NAME}</arg>
+<doc>Takes a screenshot in the specified format at library import and
+embeds it into the log file (PNG by default).</doc>
+<msg timestamp="20240327 17:18:08.444" level="INFO" html="true">&lt;a href="../resources/screenshots/TC01%20-%20Pesquisar%20CEP%20de%20Maracana%C3%BA_1.png"&gt;&lt;img src="../resources/screenshots/TC01%20-%20Pesquisar%20CEP%20de%20Maracana%C3%BA_1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240327 17:18:08.338" endtime="20240327 17:18:08.444"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20240327 17:18:08.444" endtime="20240327 17:18:08.510"/>
+</kw>
+<status status="PASS" starttime="20240327 17:18:08.337" endtime="20240327 17:18:08.510"/>
+</kw>
+<status status="PASS" starttime="20240327 17:18:02.695" endtime="20240327 17:18:08.511"/>
+</test>
+<test id="s1-s1-t2" name="TC02 - Pesquisar CEP de Benfica" line="13">
+<kw name="Dado que eu acesso o site dos correios" library="cep_steps">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>url=${geral.url}</arg>
+<arg>browser=${geral.browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20240327 17:18:08.515" level="INFO">Opening browser 'Chrome' to base url 'https://www.correios.com.br/'.</msg>
+<status status="PASS" starttime="20240327 17:18:08.513" endtime="20240327 17:18:12.117"/>
+</kw>
+<status status="PASS" starttime="20240327 17:18:08.512" endtime="20240327 17:18:12.117"/>
+</kw>
+<kw name="E clique no botão BUSCA CEP OU Endereço" library="cep_steps">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${home.cookie}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240327 17:18:12.119" level="INFO">Clicking element '//a[@id='btnCookie']'.</msg>
+<status status="PASS" starttime="20240327 17:18:12.118" endtime="20240327 17:18:12.307"/>
+</kw>
+<kw name="Scroll Element Into View" library="SeleniumLibrary">
+<arg>${home.cep}</arg>
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<status status="PASS" starttime="20240327 17:18:12.307" endtime="20240327 17:18:12.581"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${home.cep}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240327 17:18:12.582" level="INFO">Clicking element '//span[.='Busca CEP ou Endereço']'.</msg>
+<status status="PASS" starttime="20240327 17:18:12.581" endtime="20240327 17:18:13.561"/>
+</kw>
+<status status="PASS" starttime="20240327 17:18:12.118" endtime="20240327 17:18:13.561"/>
+</kw>
+<kw name="Quando eu escrever o CEP ${CEPs.benfica}" library="cep_steps" sourcename="Quando eu escrever o CEP ${cep_number}">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>locator=${cep.endereco_input}</arg>
+<arg>text=${cep_number}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20240327 17:18:13.564" level="INFO">Typing text '60040-531' into text field '//input[@id='endereco']'.</msg>
+<status status="PASS" starttime="20240327 17:18:13.563" endtime="20240327 17:18:13.656"/>
+</kw>
+<status status="PASS" starttime="20240327 17:18:13.562" endtime="20240327 17:18:13.656"/>
+</kw>
+<kw name="E clicar em pesquisar" library="cep_steps">
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>${cep.pesquisar_btn}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20240327 17:18:13.658" level="INFO">Clicking button 'btn_pesquisar'.</msg>
+<status status="PASS" starttime="20240327 17:18:13.657" endtime="20240327 17:18:13.727"/>
+</kw>
+<status status="PASS" starttime="20240327 17:18:13.656" endtime="20240327 17:18:13.727"/>
+</kw>
+<kw name="Então o sistema deve apresentar o endereço Avenida 13 de Maio - até 1989 - lado ímpar" library="cep_steps" sourcename="Então o sistema deve apresentar o endereço ${endereco}">
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>locator=${cep.logradouro}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20240327 17:18:13.727" endtime="20240327 17:18:13.965"/>
+</kw>
+<kw name="Element Text Should Be" library="SeleniumLibrary">
+<arg>locator=${cep.logradouro}</arg>
+<arg>expected=${endereco}</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20240327 17:18:13.966" level="INFO">Verifying element '//tbody/tr/td[@data-th='Logradouro/Nome']' contains exact text 'Avenida 13 de Maio - até 1989 - lado ímpar'.</msg>
+<status status="PASS" starttime="20240327 17:18:13.965" endtime="20240327 17:18:13.991"/>
+</kw>
+<status status="PASS" starttime="20240327 17:18:13.727" endtime="20240327 17:18:13.991"/>
+</kw>
+<kw name="Finaliza o teste" library="setup_teardown" type="TEARDOWN">
+<kw name="Take Screenshot" library="ScreenCapLibrary">
+<arg>name=../resources/screenshots/${TEST_NAME}</arg>
+<doc>Takes a screenshot in the specified format at library import and
+embeds it into the log file (PNG by default).</doc>
+<msg timestamp="20240327 17:18:14.151" level="INFO" html="true">&lt;a href="../resources/screenshots/TC02%20-%20Pesquisar%20CEP%20de%20Benfica_1.png"&gt;&lt;img src="../resources/screenshots/TC02%20-%20Pesquisar%20CEP%20de%20Benfica_1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240327 17:18:13.992" endtime="20240327 17:18:14.151"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20240327 17:18:14.151" endtime="20240327 17:18:14.215"/>
+</kw>
+<status status="PASS" starttime="20240327 17:18:13.991" endtime="20240327 17:18:14.215"/>
+</kw>
+<status status="PASS" starttime="20240327 17:18:08.512" endtime="20240327 17:18:14.215"/>
+</test>
+<test id="s1-s1-t3" name="TC03 - Pesquisar CEP de Fátima" line="20">
+<kw name="Dado que eu acesso o site dos correios" library="cep_steps">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>url=${geral.url}</arg>
+<arg>browser=${geral.browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20240327 17:18:14.218" level="INFO">Opening browser 'Chrome' to base url 'https://www.correios.com.br/'.</msg>
+<status status="PASS" starttime="20240327 17:18:14.216" endtime="20240327 17:18:17.762"/>
+</kw>
+<status status="PASS" starttime="20240327 17:18:14.216" endtime="20240327 17:18:17.762"/>
+</kw>
+<kw name="E clique no botão BUSCA CEP OU Endereço" library="cep_steps">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${home.cookie}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240327 17:18:17.764" level="INFO">Clicking element '//a[@id='btnCookie']'.</msg>
+<status status="PASS" starttime="20240327 17:18:17.763" endtime="20240327 17:18:17.834"/>
+</kw>
+<kw name="Scroll Element Into View" library="SeleniumLibrary">
+<arg>${home.cep}</arg>
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<status status="PASS" starttime="20240327 17:18:17.834" endtime="20240327 17:18:18.109"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${home.cep}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240327 17:18:18.111" level="INFO">Clicking element '//span[.='Busca CEP ou Endereço']'.</msg>
+<status status="PASS" starttime="20240327 17:18:18.109" endtime="20240327 17:18:19.102"/>
+</kw>
+<status status="PASS" starttime="20240327 17:18:17.762" endtime="20240327 17:18:19.103"/>
+</kw>
+<kw name="Quando eu escrever o CEP ${CEPs.fatima}" library="cep_steps" sourcename="Quando eu escrever o CEP ${cep_number}">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>locator=${cep.endereco_input}</arg>
+<arg>text=${cep_number}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20240327 17:18:19.106" level="INFO">Typing text '60410-426' into text field '//input[@id='endereco']'.</msg>
+<status status="PASS" starttime="20240327 17:18:19.104" endtime="20240327 17:18:19.205"/>
+</kw>
+<status status="PASS" starttime="20240327 17:18:19.103" endtime="20240327 17:18:19.205"/>
+</kw>
+<kw name="E clicar em pesquisar" library="cep_steps">
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>${cep.pesquisar_btn}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20240327 17:18:19.207" level="INFO">Clicking button 'btn_pesquisar'.</msg>
+<status status="PASS" starttime="20240327 17:18:19.206" endtime="20240327 17:18:19.276"/>
+</kw>
+<status status="PASS" starttime="20240327 17:18:19.205" endtime="20240327 17:18:19.276"/>
+</kw>
+<kw name="Então o sistema deve apresentar o endereço Rua Jorge Dumar - até 1549/1550" library="cep_steps" sourcename="Então o sistema deve apresentar o endereço ${endereco}">
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>locator=${cep.logradouro}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20240327 17:18:19.277" endtime="20240327 17:18:19.524"/>
+</kw>
+<kw name="Element Text Should Be" library="SeleniumLibrary">
+<arg>locator=${cep.logradouro}</arg>
+<arg>expected=${endereco}</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20240327 17:18:19.525" level="INFO">Verifying element '//tbody/tr/td[@data-th='Logradouro/Nome']' contains exact text 'Rua Jorge Dumar - até 1549/1550'.</msg>
+<status status="PASS" starttime="20240327 17:18:19.524" endtime="20240327 17:18:19.551"/>
+</kw>
+<status status="PASS" starttime="20240327 17:18:19.277" endtime="20240327 17:18:19.551"/>
+</kw>
+<kw name="Finaliza o teste" library="setup_teardown" type="TEARDOWN">
+<kw name="Take Screenshot" library="ScreenCapLibrary">
+<arg>name=../resources/screenshots/${TEST_NAME}</arg>
+<doc>Takes a screenshot in the specified format at library import and
+embeds it into the log file (PNG by default).</doc>
+<msg timestamp="20240327 17:18:19.639" level="INFO" html="true">&lt;a href="../resources/screenshots/TC03%20-%20Pesquisar%20CEP%20de%20F%C3%A1tima_1.png"&gt;&lt;img src="../resources/screenshots/TC03%20-%20Pesquisar%20CEP%20de%20F%C3%A1tima_1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240327 17:18:19.552" endtime="20240327 17:18:19.640"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20240327 17:18:19.640" endtime="20240327 17:18:19.708"/>
+</kw>
+<status status="PASS" starttime="20240327 17:18:19.552" endtime="20240327 17:18:19.709"/>
+</kw>
+<status status="PASS" starttime="20240327 17:18:14.216" endtime="20240327 17:18:19.709"/>
+</test>
+<test id="s1-s1-t4" name="TC04 - Pesquisar CEP de Maranguape" line="27">
+<kw name="Dado que eu acesso o site dos correios" library="cep_steps">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>url=${geral.url}</arg>
+<arg>browser=${geral.browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20240327 17:18:19.711" level="INFO">Opening browser 'Chrome' to base url 'https://www.correios.com.br/'.</msg>
+<status status="PASS" starttime="20240327 17:18:19.710" endtime="20240327 17:18:24.400"/>
+</kw>
+<status status="PASS" starttime="20240327 17:18:19.710" endtime="20240327 17:18:24.400"/>
+</kw>
+<kw name="E clique no botão BUSCA CEP OU Endereço" library="cep_steps">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${home.cookie}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240327 17:18:24.401" level="INFO">Clicking element '//a[@id='btnCookie']'.</msg>
+<status status="PASS" starttime="20240327 17:18:24.400" endtime="20240327 17:18:24.472"/>
+</kw>
+<kw name="Scroll Element Into View" library="SeleniumLibrary">
+<arg>${home.cep}</arg>
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<status status="PASS" starttime="20240327 17:18:24.472" endtime="20240327 17:18:24.746"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${home.cep}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240327 17:18:24.747" level="INFO">Clicking element '//span[.='Busca CEP ou Endereço']'.</msg>
+<status status="PASS" starttime="20240327 17:18:24.746" endtime="20240327 17:18:25.754"/>
+</kw>
+<status status="PASS" starttime="20240327 17:18:24.400" endtime="20240327 17:18:25.754"/>
+</kw>
+<kw name="Quando eu escrever o CEP ${CEPs.maranguape}" library="cep_steps" sourcename="Quando eu escrever o CEP ${cep_number}">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>locator=${cep.endereco_input}</arg>
+<arg>text=${cep_number}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20240327 17:18:25.756" level="INFO">Typing text '61940-750' into text field '//input[@id='endereco']'.</msg>
+<status status="PASS" starttime="20240327 17:18:25.755" endtime="20240327 17:18:25.855"/>
+</kw>
+<status status="PASS" starttime="20240327 17:18:25.754" endtime="20240327 17:18:25.855"/>
+</kw>
+<kw name="E clicar em pesquisar" library="cep_steps">
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>${cep.pesquisar_btn}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20240327 17:18:25.857" level="INFO">Clicking button 'btn_pesquisar'.</msg>
+<status status="PASS" starttime="20240327 17:18:25.856" endtime="20240327 17:18:25.925"/>
+</kw>
+<status status="PASS" starttime="20240327 17:18:25.855" endtime="20240327 17:18:25.925"/>
+</kw>
+<kw name="Então o sistema deve apresentar o endereço Rua Benedito Prata - de 2 ao fim - lado par" library="cep_steps" sourcename="Então o sistema deve apresentar o endereço ${endereco}">
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>locator=${cep.logradouro}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20240327 17:18:25.926" endtime="20240327 17:18:26.172"/>
+</kw>
+<kw name="Element Text Should Be" library="SeleniumLibrary">
+<arg>locator=${cep.logradouro}</arg>
+<arg>expected=${endereco}</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20240327 17:18:26.174" level="INFO">Verifying element '//tbody/tr/td[@data-th='Logradouro/Nome']' contains exact text 'Rua Benedito Prata - de 2 ao fim - lado par'.</msg>
+<status status="PASS" starttime="20240327 17:18:26.172" endtime="20240327 17:18:26.199"/>
+</kw>
+<status status="PASS" starttime="20240327 17:18:25.925" endtime="20240327 17:18:26.199"/>
+</kw>
+<kw name="Finaliza o teste" library="setup_teardown" type="TEARDOWN">
+<kw name="Take Screenshot" library="ScreenCapLibrary">
+<arg>name=../resources/screenshots/${TEST_NAME}</arg>
+<doc>Takes a screenshot in the specified format at library import and
+embeds it into the log file (PNG by default).</doc>
+<msg timestamp="20240327 17:18:26.288" level="INFO" html="true">&lt;a href="../resources/screenshots/TC04%20-%20Pesquisar%20CEP%20de%20Maranguape_1.png"&gt;&lt;img src="../resources/screenshots/TC04%20-%20Pesquisar%20CEP%20de%20Maranguape_1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240327 17:18:26.199" endtime="20240327 17:18:26.288"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20240327 17:18:26.288" endtime="20240327 17:18:26.359"/>
+</kw>
+<status status="PASS" starttime="20240327 17:18:26.199" endtime="20240327 17:18:26.359"/>
+</kw>
+<status status="PASS" starttime="20240327 17:18:19.709" endtime="20240327 17:18:26.359"/>
+</test>
+<status status="PASS" starttime="20240327 17:18:02.341" endtime="20240327 17:18:26.360"/>
+</suite>
+<status status="PASS" starttime="20240327 17:18:02.321" endtime="20240327 17:18:26.362"/>
+</suite>
+<statistics>
+<total>
+<stat pass="4" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="4" fail="0" skip="0" id="s1" name="Tests Suits">Tests Suits</stat>
+<stat pass="4" fail="0" skip="0" id="s1-s1" name="Pesquisa CEP">Tests Suits.Pesquisa CEP</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
