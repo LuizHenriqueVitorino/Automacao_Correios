@@ -4,5 +4,5 @@ Library    ScreenCapLibrary
 
 *** Keywords ***
 Finaliza o teste
-    Take Screenshot    name=../resources/screenshots/${TEST_NAME}
+    Capture Page Screenshot    filename=../resources/screenshots/${TEST_NAME}.png
     Close Browser
